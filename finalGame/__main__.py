@@ -1,6 +1,8 @@
 import os
 import random
 
+from pyray import draw_circle
+
 from game.casting.actor import Actor
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
@@ -46,7 +48,7 @@ def main():
     position = Point(x, y)
 
     robot = Actor()
-    robot.draw_player(x,y,35, WHITE)
+    robot.draw_player(draw_circle(x,y,35,WHITE))
     robot.set_font_size(FONT_SIZE)
     robot.set_color(WHITE)
     robot.set_position(position)

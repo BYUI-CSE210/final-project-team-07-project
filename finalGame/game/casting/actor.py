@@ -24,11 +24,7 @@ class Actor:
         self._color = Color(255, 255, 255)
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
-        self.posx = 0
-        self.posy = 0
-        self.radius = 0
-        self.colorPlayer = Color(255,255,255)
-
+       
     def get_color(self):
         """Gets the actor's color as a tuple of three ints (r, g, b).
         
@@ -122,9 +118,6 @@ class Actor:
         self._velocity = velocity
 
 
-    def draw_player(self, posx,posy,radius,colorPlayer):
-        self.posx = posx
-        self.posy = posy
-        self.radius = float(radius)
-        self.colorPlayer = colorPlayer
-        draw_circle(self.posx,self.posy,self.radius,self.colorPlayer)
+    def draw_player(player):
+       
+        return player
