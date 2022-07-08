@@ -47,12 +47,12 @@ def main():
     y = int(MAX_Y / 2)
     position = Point(x, y)
 
-    robot = Actor()
-    robot.draw_player(draw_circle(x,y,35,WHITE))
-    robot.set_font_size(FONT_SIZE)
-    robot.set_color(WHITE)
-    robot.set_position(position)
-    cast.add_actor("robots", robot)
+    player1 = Actor()
+    player1.draw_player(draw_circle(x,y,35,WHITE))
+    player1.set_font_size(FONT_SIZE)
+    player1.set_color(WHITE)
+    player1.set_position(position)
+    cast.add_actor("player", player1)
     
     # create the artifacts
     with open(DATA_PATH) as file:
