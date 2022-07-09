@@ -24,6 +24,10 @@ class Actor:
         self._color = Color(255, 255, 255)
         self._position = Point(0, 0)
         self._velocity = Point(0, 0)
+        self._posx = 0
+        self._posy = 0
+        self._cradious = 0
+
        
     def get_color(self):
         """Gets the actor's color as a tuple of three ints (r, g, b).
@@ -108,6 +112,15 @@ class Actor:
             text (string): The given value.
         """
         self._text = text
+    # def set_player(self, posx,posy,cradius,color):
+    #     self._posx = posx
+    #     self._posy = posy
+    #     self._cradious = cradius
+    #     self._color = color
+
+    def get_player(self):
+
+        return self._posx, self._posy,self._cradious,self._color
 
     def set_velocity(self, velocity):
         """Updates the velocity to the given one.
@@ -116,8 +129,3 @@ class Actor:
             velocity (Point): The given velocity.
         """
         self._velocity = velocity
-
-
-    def draw_player(player):
-       
-        return player

@@ -4,6 +4,7 @@ import random
 from pyray import draw_circle
 
 from game.casting.actor import Actor
+from game.casting.player import Player
 from game.casting.artifact import Artifact
 from game.casting.cast import Cast
 
@@ -47,12 +48,29 @@ def main():
     y = int(MAX_Y / 2)
     position = Point(x, y)
 
-    player1 = Actor()
-    player1.draw_player(draw_circle(x,y,35,WHITE))
+    #CREATING THE PLAYER 1
+    player1 = Player()
+    player1.set_player(x,y,55,WHITE)
     player1.set_font_size(FONT_SIZE)
     player1.set_color(WHITE)
     player1.set_position(position)
-    cast.add_actor("player", player1)
+    cast.add_actor("player1", player1)
+
+    #PLAYER 2
+    
+    # # Position for Player 2
+    # x2 = int(MAX_X / 2 + 200)
+    # y2 = int(MAX_Y / 2)
+    # position2 = Point(x2, y2)
+
+    # #Creating a Second Player
+    # player2 = Player()
+    # player2.set_player(x,y,55,WHITE)
+    # player2.set_font_size(FONT_SIZE)
+    # player2.set_color(WHITE)
+    # player2.set_position(position2)
+    # cast.add_actor("player2", player2)
+
     
     # create the artifacts
     with open(DATA_PATH) as file:
@@ -73,6 +91,7 @@ def main():
         b = random.randint(0, 255)
         color = Color(r, g, b)
         
+        #THE FOOD
         artifact = Artifact()
         artifact.set_text(text)
         artifact.set_font_size(FONT_SIZE)

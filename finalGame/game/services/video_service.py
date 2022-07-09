@@ -1,7 +1,5 @@
 import pyray
-
-
-class VideoService:
+class VideoService():
     """Outputs the game state. The responsibility of the class of objects is to draw the game state 
     on the screen. 
     """
@@ -31,31 +29,33 @@ class VideoService:
         pyray.clear_background(pyray.BLACK)
         if self._debug == True:
             self._draw_grid()
-    
-    def draw_actor(self, actor):
+            
+    #This Is the one that prints all of the actors for now this includes (Player and Artifacts)
+    def draw_actor(self, player):
         """Draws the given actor's text on the screen.
 
         Args:
             actor (Actor): The actor to draw.
         """ 
-        text = actor.get_text()
-        x = actor.get_position().get_x()
-        y = actor.get_position().get_y()
-        font_size = actor.get_font_size()
-        color = actor.get_color().to_tuple()
-        pyray.draw_text(text, x, y, font_size, color)
+        text = player.get_player()
+        x = player.get_position().get_x()
+        y = player.get_position().get_y()
+        font_size = player.get_font_size()
+        color = player.get_color().to_tuple()
+        pyray.draw_circle(x, y, 20, color)
 
-    # def draw_player(self, actor):
+    # def draw_food(self, actor):
     #      """Draws the given actor's text on the screen.
 
     #     Args:
     #         actor (Actor): The actor to draw.
     #     """ 
+    #     text = actor.get_food()
     #     x = actor.get_position().get_x()
     #     y = actor.get_position().get_y()
     #     font_size = actor.get_font_size()
     #     color = actor.get_color().to_tuple()
-    #     pyray.draw_circle( x, y, 55, color)
+    #     pyray.draw_circle( x, y, 15, color)
         
     def draw_actors(self, actors):
         """Draws the text for the given list of actors on the screen.
