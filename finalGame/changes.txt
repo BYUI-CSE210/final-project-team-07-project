@@ -1,0 +1,15 @@
+These changes were pushed to GitHub on 7/11/2022
+
+Finished Changes:
+    1.  Fixed many Class and Method comments across all programs
+    2.  Replace all instances of "artifacts" or "artifact" with "foods" or "food", respectively
+    3.  Created a "constants.py" file with all the constants, then changed all references to the individual constants themselves with callouts to the "constants.py" file
+    4.  Gave Player 1 & Player 2 the ability to move around independently (keyboard_service.py)
+    5.  Changed the size of the window to 1) 2000x900, 2) COLUMNS to 130, ROWS to 60, & 3) AMOUNT_OF_FOOD to 200. These changes all allowed for a 1) bigger play area, 2) Allowed the food to be present across the entire area, & 3) gave many more foods to collect
+    6.  Modified Ariana's collision logic to check for Player 1 & Player 2 independently(director.py)
+    7.  The amount that the player's radius increases by when they collect food was changed down to 2. That prevents either player from getting so big that they can't fit into the window if they collect too much food.
+
+
+Still In Development:
+    1.  I am still working on the logic for checking Game Over & declaring a winner, it currently is not working(handle_game_over.py)
+    2.  I want to flesh out "handle_collisions.py" to handles collisions instead of relying on "director.py"
