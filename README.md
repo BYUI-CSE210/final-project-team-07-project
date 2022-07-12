@@ -1,5 +1,5 @@
-# Robot Finds Kitten
-Simon Carless once described robotfindskitten as "less a game and more a way of life ... It's fun to wander around until you find a kitten, at which point you feel happy and can start again". I don't think I could have said it better myself!
+# Agar.io
+A game where you eat everything! Eat as many objects as you can, and become bigger than your opponent. 
 
 ## Getting Started
 ---
@@ -20,7 +20,6 @@ The project files and folders are organized as follows:
 ```
 root                    (project root folder)
 +-- rfk                 (source code for game)
-  +-- data              (data files for game)
   +-- game              (specific game classes)
   +-- __main__.py       (entry point for program)
 +-- README.md           (general info)
@@ -33,4 +32,4 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add your name and email here
+Ariana Jerome | Kevin Pina | Kobe Lemon
