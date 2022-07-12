@@ -5,7 +5,6 @@ from pyray import draw_circle
 
 from game.casting.actor import Actor
 from game.casting.player import Player
-from game.casting.artifact import Artifact
 from game.casting.cast import Cast
 
 from game.directing.director import Director
@@ -25,7 +24,7 @@ COLS = 60
 ROWS = 40
 CAPTION = "Agar.io"
 WHITE = Color(255, 255, 255)
-DEFAULT_ARTIFACTS = 40
+DEFAULT_FOOD = 40
 
 
 def main():
@@ -47,7 +46,7 @@ def main():
 
     #CREATING THE PLAYER 1
     player1 = Player()
-    player1.set_player(x,y,50,WHITE)
+    player1.set_radius(20)
     player1.set_color(WHITE)
     player1.set_position(position)
     cast.add_actor("player1", player1)
@@ -60,15 +59,14 @@ def main():
     position2 = Point(x2, y2)
      #Creating a Second Player
     player2 = Player()
-    player2.set_player(x,y,20,WHITE)
+    player2.set_radius(20)
     player2.set_color(WHITE)
     player2.set_position(position2)
     cast.add_actor("player2", player2)
 
     #create the artifacts
 
-    for n in range(DEFAULT_ARTIFACTS):
-        text = chr(random.randint(33, 126))
+    for n in range(DEFAULT_FOOD):
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
@@ -79,12 +77,13 @@ def main():
         g = random.randint(0, 255)
         b = random.randint(0, 255)
         color = Color(r, g, b)
+        radius = 20
         
         #THE FOOD
-        artifact = Artifact()
-        artifact.set_text(text)
+        artifact = Player()
         artifact.set_color(color)
         artifact.set_position(position)
+        artifact.set_radius(radius)
         cast.add_actor("artifacts", artifact)
     
     # start the game

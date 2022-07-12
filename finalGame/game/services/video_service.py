@@ -31,31 +31,34 @@ class VideoService():
             self._draw_grid()
             
     #This Is the one that prints all of the actors for now this includes (Player and Artifacts)
-    def draw_actor(self, player):
+    def draw_actor(self, actor):
         """Draws the given actor's text on the screen.
 
         Args:
             actor (Actor): The actor to draw.
         """ 
-        text = player.get_player()
+        text = actor.get_text()
+        x = actor.get_position().get_x()
+        y = actor.get_position().get_y()
+        font_size = actor.get_font_size()
+        color = actor.get_color().to_tuple()
+        pyray.draw_text(text, x, y, font_size, color)
+
+    def draw_player(self, player):
         x = player.get_position().get_x()
         y = player.get_position().get_y()
-        font_size = player.get_font_size()
         color = player.get_color().to_tuple()
-        pyray.draw_circle(x, y, 20, color)
+        radius = player.get_radius()
+        pyray.draw_circle(x, y, radius, color)
 
-    # def draw_food(self, actor):
-    #      """Draws the given actor's text on the screen.
+    def draw_players(self, players):
+        """
 
-    #     Args:
-    #         actor (Actor): The actor to draw.
-    #     """ 
-    #     text = actor.get_food()
-    #     x = actor.get_position().get_x()
-    #     y = actor.get_position().get_y()
-    #     font_size = actor.get_font_size()
-    #     color = actor.get_color().to_tuple()
-    #     pyray.draw_circle( x, y, 15, color)
+        Args:
+            actors (list): A list of actors to draw.
+        """ 
+        for player in players:
+            self.draw_player(player)
         
     def draw_actors(self, actors):
         """Draws the text for the given list of actors on the screen.

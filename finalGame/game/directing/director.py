@@ -1,3 +1,7 @@
+import math
+from game.casting.player import Player
+from game.casting.cast import Cast
+
 class Director:
     """A person who directs the game. 
     
@@ -59,9 +63,18 @@ class Director:
         player.move_next(max_x, max_y)
         
         for artifact in artifacts:
-            if player.get_position().equals(artifact.get_position()):
-                message = artifact.get_message()
-                banner.set_text(message)    
+            collision_distance = player.get_radius() + artifact.get_radius()
+            p_position = player.get_position()
+            a_position = artifact.get_position()
+            x = p_position.get_x() - a_position.get_x()
+            x2 = x ** 2
+            y = p_position.get_y() - a_position.get_y()
+            y2 = y ** 2
+            #Using pythagorean therom to get distance
+            distance = math.sqrt((p_position.get_x() - a_position.get_x()) ** 2 + (p_position.get_y() - a_position.get_y()) ** 2)
+            if distance <= collision_distance:
+                player.set_radius(player.get_radius() + 5)
+                cast.remove_actor("artifacts", artifact)
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
@@ -70,6 +83,13 @@ class Director:
             cast (Cast): The cast of actors.
         """
         self._video_service.clear_buffer()
-        actors = cast.get_all_actors()
-        self._video_service.draw_actors(actors)
+        food = cast.get_actors("artifacts")
+        self._video_service.draw_players(food)
+        banners = cast.get_actors("banner")
+        self._video_service.draw_actors(banners) 
+        player1 = cast.get_first_actor("player1")
+        self._video_service.draw_player(player1)
+        player2 = cast.get_first_actor("player2")
+        self._video_service.draw_player(player2)
         self._video_service.flush_buffer()
+        
