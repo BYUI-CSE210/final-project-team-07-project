@@ -3,75 +3,71 @@ import random
 
 from pyray import draw_circle
 
+# Casting
 from game.casting.actor import Actor
 from game.casting.player import Player
 from game.casting.cast import Cast
 
+# Director
 from game.directing.director import Director
 
+# Services
 from game.services.keyboard_service import KeyboardService
 from game.services.video_service import VideoService
 
+# Scripting
+
+# Shared
 from game.shared.color import Color
 from game.shared.point import Point
 
-
-FRAME_RATE = 12
-MAX_X = 900
-MAX_Y = 600
-CELL_SIZE = 15
-COLS = 60
-ROWS = 40
-CAPTION = "Agar.io"
-WHITE = Color(255, 255, 255)
-DEFAULT_FOOD = 40
-
+import constants
 
 def main():
-    
+    """Play the entire game"""
     # create the cast
     cast = Cast()
     
     # create the banner
     banner = Actor()
     banner.set_text("")
-    banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, 0))
+    banner.set_color(constants.WHITE)
+    banner.set_position(Point(constants.CELL_SIZE, 0))
     cast.add_actor("banners", banner)
     
     # create the blob
-    x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    x = int(constants.MAX_X / 2)
+    y = int(constants.MAX_Y / 2)
     position = Point(x, y)
 
     #CREATING THE PLAYER 1
     player1 = Player()
     player1.set_radius(20)
-    player1.set_color(WHITE)
+    player1.set_color(constants.WHITE)
     player1.set_position(position)
     cast.add_actor("player1", player1)
 
     #PLAYER 2
 
      # Position for Player 2
-    x2 = int(MAX_X / 2 + 200)
-    y2 = int(MAX_Y / 2)
+    x2 = int(constants.MAX_X / 2 + 200)
+    y2 = int(constants.MAX_Y / 2)
     position2 = Point(x2, y2)
      #Creating a Second Player
     player2 = Player()
     player2.set_radius(20)
-    player2.set_color(WHITE)
+    player2.set_color(constants.WHITE)
     player2.set_position(position2)
     cast.add_actor("player2", player2)
 
-    #create the artifacts
+    #create the food
 
-    for n in range(DEFAULT_FOOD):
+    for n in range(constants.AMOUNT_OF_FOOD):
 
-        x = random.randint(1, COLS - 1)
-        y = random.randint(1, ROWS - 1)
+        x = random.randint(1, constants.COLUMNS - 1)
+        y = random.randint(1, constants.ROWS - 1)
         position = Point(x, y)
-        position = position.scale(CELL_SIZE)
+        position = position.scale(constants.CELL_SIZE)
 
         r = random.randint(0, 255)
         g = random.randint(0, 255)
@@ -80,15 +76,15 @@ def main():
         radius = 20
         
         #THE FOOD
-        artifact = Player()
-        artifact.set_color(color)
-        artifact.set_position(position)
-        artifact.set_radius(radius)
-        cast.add_actor("artifacts", artifact)
+        food = Player()
+        food.set_color(color)
+        food.set_position(position)
+        food.set_radius(radius)
+        cast.add_actor("foods", food)
     
     # start the game
-    keyboard_service = KeyboardService(CELL_SIZE)
-    video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
+    keyboard_service = KeyboardService(constants.CELL_SIZE)
+    video_service = VideoService(constants.CAPTION, constants.MAX_X, constants.MAX_Y, constants.CELL_SIZE, constants.FRAME_RATE)
     director = Director(keyboard_service, video_service)
     director.start_game(cast)
 
