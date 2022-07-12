@@ -21,11 +21,9 @@ FRAME_RATE = 12
 MAX_X = 900
 MAX_Y = 600
 CELL_SIZE = 15
-FONT_SIZE = 15
 COLS = 60
 ROWS = 40
-CAPTION = "Robot Finds Kitten"
-DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
+CAPTION = "Agar.io"
 WHITE = Color(255, 255, 255)
 DEFAULT_ARTIFACTS = 40
 
@@ -38,48 +36,39 @@ def main():
     # create the banner
     banner = Actor()
     banner.set_text("")
-    banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
     
-    # create the robot
+    # create the blob
     x = int(MAX_X / 2)
     y = int(MAX_Y / 2)
     position = Point(x, y)
 
     #CREATING THE PLAYER 1
     player1 = Player()
-    player1.set_player(x,y,55,WHITE)
-    player1.set_font_size(FONT_SIZE)
+    player1.set_player(x,y,50,WHITE)
     player1.set_color(WHITE)
     player1.set_position(position)
     cast.add_actor("player1", player1)
 
     #PLAYER 2
-    
-    # # Position for Player 2
-    # x2 = int(MAX_X / 2 + 200)
-    # y2 = int(MAX_Y / 2)
-    # position2 = Point(x2, y2)
 
-    # #Creating a Second Player
-    # player2 = Player()
-    # player2.set_player(x,y,55,WHITE)
-    # player2.set_font_size(FONT_SIZE)
-    # player2.set_color(WHITE)
-    # player2.set_position(position2)
-    # cast.add_actor("player2", player2)
+     # Position for Player 2
+    x2 = int(MAX_X / 2 + 200)
+    y2 = int(MAX_Y / 2)
+    position2 = Point(x2, y2)
+     #Creating a Second Player
+    player2 = Player()
+    player2.set_player(x,y,20,WHITE)
+    player2.set_color(WHITE)
+    player2.set_position(position2)
+    cast.add_actor("player2", player2)
 
-    
-    # create the artifacts
-    with open(DATA_PATH) as file:
-        data = file.read()
-        messages = data.splitlines()
+    #create the artifacts
 
     for n in range(DEFAULT_ARTIFACTS):
         text = chr(random.randint(33, 126))
-        message = messages[n]
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
@@ -94,10 +83,8 @@ def main():
         #THE FOOD
         artifact = Artifact()
         artifact.set_text(text)
-        artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
         artifact.set_position(position)
-        artifact.set_message(message)
         cast.add_actor("artifacts", artifact)
     
     # start the game

@@ -29,16 +29,28 @@ class KeyboardService:
         dx = 0
         dy = 0
 
-        if pyray.is_key_down(pyray.KEY_LEFT):
+        if pyray.is_key_down(pyray.KEY_A):
             dx = -1
         
-        if pyray.is_key_down(pyray.KEY_RIGHT):
+        if pyray.is_key_down(pyray.KEY_D):
             dx = 1
         
-        if pyray.is_key_down(pyray.KEY_UP):
+        if pyray.is_key_down(pyray.KEY_W):
             dy = -1
         
-        if pyray.is_key_down(pyray.KEY_DOWN):
+        if pyray.is_key_down(pyray.KEY_S):
+            dy = 1
+
+        if pyray.is_key_down(pyray.KEY_J):
+            dx = -1
+        
+        if pyray.is_key_down(pyray.KEY_L):
+            dx = 1
+        
+        if pyray.is_key_down(pyray.KEY_I):
+            dy = -1
+        
+        if pyray.is_key_down(pyray.KEY_K):
             dy = 1
 
         direction = Point(dx, dy)

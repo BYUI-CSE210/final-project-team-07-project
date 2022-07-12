@@ -2,6 +2,7 @@ from game.casting.actor import Actor
 from pyray import draw_circle
 from game.shared.color import Color
 from game.shared.point import Point
+import turtle
 
 
 class Player(Actor):
@@ -14,6 +15,7 @@ class Player(Actor):
 
 
     def set_player(self, posx,posy,cradius,color):
+        t = turtle.Turtle()
         self._posx = posx
         self._posy = posy
         self._cradious = cradius
