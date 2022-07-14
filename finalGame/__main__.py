@@ -2,6 +2,7 @@ import os
 import random
 
 from pyray import draw_circle
+from constants import AMOUNT_OF_FOOD
 
 # Casting
 from game.casting.actor import Actor
@@ -81,6 +82,18 @@ def main():
         food.set_position(position)
         food.set_radius(radius)
         cast.add_actor("foods", food)
+
+    #Possible solution for getting a winner
+    #while AMOUNT_OF_FOOD == 0:
+    #    if player1._radius > player2._radius:
+    #        Actor.get_text("player1")
+    #        Actor.set_text("Player 1 Wins!")
+    #        Actor.set_color(constants.WHITE)
+    #    else:
+    #        Actor.get_text("player2")
+    #        Actor.set_text("Player 2 Wins!")
+    #        Actor.set_color(constants.WHITE)
+#
     
     # start the game
     keyboard_service = KeyboardService(constants.CELL_SIZE)
