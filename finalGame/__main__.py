@@ -1,7 +1,4 @@
-import os
 import random
-
-from pyray import draw_circle
 
 # Casting
 from game.casting.actor import Actor
@@ -45,7 +42,7 @@ def main():
     player1.set_radius(20)
     player1.set_color(constants.WHITE)
     player1.set_position(position)
-    cast.add_actor("player1", player1)
+    cast.add_actor("players", player1)
 
     #PLAYER 2
 
@@ -58,7 +55,7 @@ def main():
     player2.set_radius(20)
     player2.set_color(constants.WHITE)
     player2.set_position(position2)
-    cast.add_actor("player2", player2)
+    cast.add_actor("players", player2)
 
     #create the food
 
@@ -85,7 +82,7 @@ def main():
     # start the game
     keyboard_service = KeyboardService(constants.CELL_SIZE)
     video_service = VideoService(constants.CAPTION, constants.MAX_X, constants.MAX_Y, constants.CELL_SIZE, constants.FRAME_RATE)
-    director = Director(keyboard_service, video_service)
+    director = Director(keyboard_service, video_service, player1, player2)
     director.start_game(cast)
 
 

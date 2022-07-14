@@ -21,13 +21,10 @@ class HandleGameOver(Action):
         _remaining_food (int): the amount of remaining food
     """
 
-    def __init__(self, _player1_radius, _player2_radius, remaining_food):
+    def __init__(self):
         self._is_game_over = False 
         self._message = Actor()
-        self._player1_radius = _player1_radius
-        self._player2_radius = _player2_radius
         self._cast = Cast()
-        self._remaining_food = remaining_food
 
     def execute(self, cast, script):
         """Executes the handle game over action.
@@ -39,31 +36,29 @@ class HandleGameOver(Action):
         if not self._is_game_over:
             self._handle_game_over(self._cast)
 
-    def _handle_game_over(self, cast):
-        """Shows the 'game over' message and turns the snake white if the game is over."""
-        if self._remaining_food == 0:
-            self._is_game_over = True
+    def _handle_game_over(self, cast, winner):
+        """Shows the 'game over' message & removes any remaining food."""
 
-        if self._is_game_over:
-            x = int(constants.MAX_X / 2)
-            y = int(constants.MAX_Y / 2)
-            position = Point(x, y)
+        # delete any remaining food
+        cast.clear_list("foods")
 
-            self._message.set_font_size(20)
-            self._message.set_color(constants.RED)
-            self._message.set_position(position)
+        x = int(constants.MAX_X / 2)
+        y = int(constants.MAX_Y / 2)
+        position = Point(x, y)
 
-            # if player1 is bigger, declare player1 as the winner
-            if self._player1_radius > self._player2_radius:
-                self._message.set_text("Player 1 Wins!")
-                cast.add_actor("messages", self._message)
+        self._message.set_font_size(20)
+        self._message.set_color(constants.RED)
+        self._message.set_position(position)
+        cast.add_actor("messages", self._message)
 
-            # if player2 is bigger, declare player2 as the winner
-            if self._player1_radius < self._player2_radius:
-                self._message.set_text("Player 2 Wins!")
-                cast.add_actor("messages", self._message)
+        # if player1 is bigger, declare player1 as the winner
+        if winner == "player1":
+            self._message.set_text("Player 1 Wins!")
 
-            # if both players are the same size, declare a tie
-            if self._player1_radius == self._player2_radius:
-                self._message.set_text("Both Players are the same size! Tie Game!")
-                cast.add_actor("messages", self._message)
+        # if player2 is bigger, declare player2 as the winner
+        if winner == "player2":
+            self._message.set_text("Player 2 Wins!")
+
+        # if both players are the same size, declare a tie
+        if winner.lower() == 'tie':
+            self._message.set_text("Both Players are the same size! Tie Game!")
