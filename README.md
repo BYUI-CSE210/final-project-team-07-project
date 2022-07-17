@@ -9,7 +9,10 @@ python3 -m pip install raylib
 ```
 After you've installed the required libraries, open a terminal and browse to the project's root folder. Start the program by running the following command.```
 
-python3 rfk 
+cd finalGame
+
+py __main__.py
+
 ```
 You can also run the program from an IDE like Visual Studio Code. Start your IDE and open the 
 project folder. Select the main module inside the hunter folder and click the "run" icon.
@@ -18,8 +21,8 @@ project folder. Select the main module inside the hunter folder and click the "r
 ---
 The project files and folders are organized as follows:
 ```
-root                    (project root folder)
-+-- rfk                 (source code for game)
+final-project-team-07-project  (project root folder)
++-- finalGame                (source code for game)
   +-- game              (specific game classes)
   +-- __main__.py       (entry point for program)
 +-- README.md           (general info)
