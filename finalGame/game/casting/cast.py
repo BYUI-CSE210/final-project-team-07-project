@@ -63,6 +63,19 @@ class Cast:
         if group in self._actors.keys():
             result = self._actors[group][index]
         return result
+    
+    def get_list(self, group):
+        """Gets the list of the given name
+        
+        Args:
+            group (string): The name of the group.
+            
+        Returns:
+            List: the full list of the given name
+        """
+        if group in self._actors.keys():
+            result = self._actors[group]
+        return result
 
     def remove_actor(self, group, actor):
         """Removes an actor from the given group.
@@ -73,12 +86,3 @@ class Cast:
         """
         if group in self._actors:
             self._actors[group].remove(actor)
-
-    def clear_list(self, group):
-        """Clears all the contents in an entire group.
-        
-        Args:
-            group (string): The name of the group.
-        """
-        if group in self._actors:
-            self._actors[group].clear()
