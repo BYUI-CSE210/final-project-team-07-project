@@ -1,21 +1,10 @@
 Changes:
-    1. Fixed the Player vs Food & Player vs Player Collisions logic in director.py so they work properly but they do not end the game properly
-    2. Did work on handle_collisions.py and handle_game_over.py but it is not working properly, as described down in "Current Bugs"
-    3. Fixed more comments throughout the program
-    4. Added INVISIBLE_OPACITY to constants.py so we can turn an item's opacity invisible if needed
-    5. Put both player1 & player2 into one new list named "players"
-    6. Added a "clear_list" method in cast.py that clears the contents of an entire list which is planned to be used in handle_game_over.py to delete all of the remaining food when the game is over
+    1. Added the "get_list" method in cast.py to get an entire list as a whole instead of just the contents
+    2. Removed PVP collisions from director.py so now the goal of the game is to collect as much food as possible instead of PVP
+    3. Deleted the handle_collisions.py file because of change # 2
+    4. Created the score.py file which created a new feature to allow players to gain points
+    5. Fixed handle_game_over.py to compare player1's points & player2's points & determine a winner or tie
+    6. Changed player2's keyboard inputs from IJKL to the directional keys
+    7. Added code in director.py to draw player1's score, player2's score, and the game over message
+    8. Added a "LIGHT_BLUE" color to the constants.py file which became the color of the player1 & player2 scores & game_over message
     7. Changed the "get_actor" method in cast.py to allow you to look for the actor for any given index
-
-Current Bugs:
-    1. Game Over Logic Not Working
-        1. If I remove the player from the "players" listwith the cast.remove_actor() method, the game doesn't recognize that line & has no effect
-        2. If I set the player's opacity to zero(lines 110 & 118 of director.py), that makes the player invisible but they can still move around & eat food. We need to do one of these two: 1) disconnect the player from keyboard inputs so it can't move, or 2) find a way to remove the player from the "players" list
-
-    2. Collisions Logic Not Working
-        1. The collisions logic in the "for food in foods" loop (lines X-X of director.py) works fine for the food, but if I replace that code inside the for loop, it just infinitely increases the radius of the player & I'm not sure why it does that
-        2. The PVP collisions logic only works if I make the player invisible instead of removing the player from the "players" list but I'm not sure why it does that
-        2. I want to put the collisions logic code into handle_collisions.py instead of director.py but if we don't have time for that then it's will work as it is now
-
-    3. clear_list Method Not Working -- might fix itself if we fix handle_game_over.py
-        1. I added a "clear_list" method in cast.py that clears the contents of an entire list which is planned to be used in handle_game_over.py to delete all of the remaining food when the game is over but it is not working because the _handle_game_over method is not working either

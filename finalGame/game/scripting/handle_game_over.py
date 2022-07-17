@@ -5,8 +5,6 @@
 from game.casting.cast import Cast
 from game.casting.actor import Actor
 from game.scripting.action import Action
-from game.shared.point import Point
-import constants
 
 class HandleGameOver(Action):
     """
@@ -14,7 +12,7 @@ class HandleGameOver(Action):
 
     Attributes:
         _is_game_over (boolean): Whether or not the game is over.
-        _message (Actor): For declaring a winner or tie
+        message (Actor): For declaring a winner or tie
         _player1_radius (int): the radius of player 1
         _player2_radius (int): the radius of player 2
         _cast (Cast): the cast of the message
@@ -23,7 +21,7 @@ class HandleGameOver(Action):
 
     def __init__(self):
         self._is_game_over = False 
-        self._message = Actor()
+        self.message = Actor()
         self._cast = Cast()
 
     def execute(self, cast, script):
@@ -36,29 +34,19 @@ class HandleGameOver(Action):
         if not self._is_game_over:
             self._handle_game_over(self._cast)
 
-    def _handle_game_over(self, cast, winner):
-        """Shows the 'game over' message & removes any remaining food."""
-
-        # delete any remaining food
-        cast.clear_list("foods")
-
-        x = int(constants.MAX_X / 2)
-        y = int(constants.MAX_Y / 2)
-        position = Point(x, y)
-
-        self._message.set_font_size(20)
-        self._message.set_color(constants.RED)
-        self._message.set_position(position)
-        cast.add_actor("messages", self._message)
+    def _handle_game_over(self, player1_score, player2_score):
+        """Shows the 'game over' message"""
 
         # if player1 is bigger, declare player1 as the winner
-        if winner == "player1":
-            self._message.set_text("Player 1 Wins!")
+        if player1_score.get_points() > player2_score.get_points():
+            self.message = "Player 1 Wins!"
 
         # if player2 is bigger, declare player2 as the winner
-        if winner == "player2":
-            self._message.set_text("Player 2 Wins!")
+        if player2_score.get_points() > player1_score.get_points():
+            self.message = "Player 2 Wins!"
 
         # if both players are the same size, declare a tie
-        if winner.lower() == 'tie':
-            self._message.set_text("Both Players are the same size! Tie Game!")
+        if player1_score.get_points() == player2_score.get_points():
+            self.message = "Both Players are the same size! Tie Game!"
+
+        return self.message
