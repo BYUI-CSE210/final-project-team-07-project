@@ -1,10 +1,14 @@
+Even though this current commit is a different commit from the previous commit, I'm just lumping the changes info together in this file since the prior commit was made only 1 hour ago
 Changes:
-    1. Added the "get_list" method in cast.py to get an entire list as a whole instead of just the contents
-    2. Removed PVP collisions from director.py so now the goal of the game is to collect as much food as possible instead of PVP
-    3. Deleted the handle_collisions.py file because of change # 2
-    4. Created the score.py file which created a new feature to allow players to gain points
-    5. Fixed handle_game_over.py to compare player1's points & player2's points & determine a winner or tie
-    6. Changed player2's keyboard inputs from IJKL to the directional keys
-    7. Added code in director.py to draw player1's score, player2's score, and the game over message
-    8. Added a "LIGHT_BLUE" color to the constants.py file which became the color of the player1 & player2 scores & game_over message
-    7. Changed the "get_actor" method in cast.py to allow you to look for the actor for any given index
+    Prior Commit:
+        1. Added the "get_list" method in cast.py to get an entire list as a whole instead of just the contents
+        2. Removed PVP collisions from director.py so now the goal of the game is to collect as much food as possible instead of PVP
+        3. Deleted the handle_collisions.py file because of change # 2
+        4. Created the score.py file which created a new feature to allow players to gain points
+        5. Fixed handle_game_over.py to compare player1's points & player2's points & determine a winner or tie
+        6. Changed player2's keyboard inputs from IJKL to the directional keys
+        7. Added code in director.py to draw player1's score, player2's score, and the game over message
+        8. Added a "LIGHT_BLUE" color to the constants.py file which became the color of the player1 & player2 scores & game_over message
+        7. Changed the "get_actor" method in cast.py to allow you to look for the actor for any given index
+    Current Commit:
+        1. Added a game over feature for when all food is collected: set each player's position to a hardcoded location & prevent them by moving by disconnecting their access to keyboard controls so the game truly ends

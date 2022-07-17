@@ -1,5 +1,6 @@
 import pyray
 from game.shared.point import Point
+from game.casting.cast import Cast
 
 
 class KeyboardService:
@@ -26,36 +27,69 @@ class KeyboardService:
         Returns:
             Point: The selected direction.
         """
-        dx = 0
-        dy = 0
-
+        directional_x = 0
+        directional_y = 0
         if player == 'player1':
             if pyray.is_key_down(pyray.KEY_A):
-                dx = -1
+                directional_x = -1
             
             if pyray.is_key_down(pyray.KEY_D):
-                dx = 1
+                directional_x = 1
             
             if pyray.is_key_down(pyray.KEY_W):
-                dy = -1
+                directional_y = -1
             
             if pyray.is_key_down(pyray.KEY_S):
-                dy = 1
+                directional_y = 1
                 
         if player == 'player2':
             if pyray.is_key_down(pyray.KEY_LEFT):
-                dx = -1
+                directional_x = -1
             
             if pyray.is_key_down(pyray.KEY_RIGHT):
-                dx = 1
+                directional_x = 1
             
             if pyray.is_key_down(pyray.KEY_UP):
-                dy = -1
+                directional_y = -1
             
             if pyray.is_key_down(pyray.KEY_DOWN):
-                dy = 1
+                directional_y = 1
 
-        direction = Point(dx, dy)
+        direction = Point(directional_x, directional_y)
+        direction = direction.scale(self._cell_size)
+        
+        return direction
+
+    def disconnect_players(self):
+        """When the game is over, disconnect both players from keyboard input so they can longer move"""
+        directional_x = 0
+        directional_y = 0
+        
+        if pyray.is_key_down(pyray.KEY_A):
+            directional_x = 0
+            
+        if pyray.is_key_down(pyray.KEY_D):
+            directional_x = 0
+        
+        if pyray.is_key_down(pyray.KEY_W):
+            directional_y = 0
+        
+        if pyray.is_key_down(pyray.KEY_S):
+            directional_y = 0
+
+        if pyray.is_key_down(pyray.KEY_LEFT):
+            directional_x = 0
+        
+        if pyray.is_key_down(pyray.KEY_RIGHT):
+            directional_x = 0
+        
+        if pyray.is_key_down(pyray.KEY_UP):
+            directional_y = 0
+        
+        if pyray.is_key_down(pyray.KEY_DOWN):
+            directional_y = 0
+
+        direction = Point(directional_x, directional_y)
         direction = direction.scale(self._cell_size)
         
         return direction

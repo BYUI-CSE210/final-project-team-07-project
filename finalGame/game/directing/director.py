@@ -2,6 +2,7 @@ import math
 import constants
 from game.casting.cast import Cast
 from game.scripting.handle_game_over import HandleGameOver
+from game.shared.point import Point
 
 class Director:
     """A person who directs the game. 
@@ -104,7 +105,6 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        foods_list = cast.get_list("foods")
 
         self._video_service.clear_buffer()
         food = cast.get_actors("foods")
@@ -118,8 +118,11 @@ class Director:
         self._video_service.draw_actor(self.player1_score)
         self._video_service.draw_actor(self.player2_score)
         game_over = ""
-        if len(foods_list) == 0:
+        if len(cast.get_list("foods")) == 0:
             game_over = self._handle_game_over._handle_game_over(self.player1_score, self.player2_score)
+            self.player1.set_position(Point(300, 450))
+            self.player2.set_position(Point(1600, 450))
+            self._keyboard_service.disconnect_players()
         self._video_service.draw_actor(self.game_over_message)
         self._video_service.flush_buffer()
         self.player1_score.set_text(f"PLAYER 1 SCORE: {self.player1_score.get_points()}")
